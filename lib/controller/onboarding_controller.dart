@@ -1,24 +1,29 @@
 import 'package:ecommerce/core/constant/routes.dart';
-import 'package:ecommerce/data/dataSource/static/static.dart';
-import 'package:flutter/widgets.dart';
+import 'package:ecommerce/core/services/services.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 
-abstract class OnboardingController  extends GetxController{
+import '../data/datasource/static/static.dart';
+
+abstract class OnBoardingController extends GetxController {
   next();
   onPageChanged(int index);
 }
 
-class OnboardingControllerImp extends OnboardingController{
+class OnBoardingControllerImp extends OnBoardingController {
+
+  late PageController pageController;
+
   int currentPage = 0;
-  late PageController  pageController=PageController() ;
-  
-   @override
+
+  MyServices myServices = Get.find() ; 
+
+  @override
   next() {
     currentPage++;
 
     if (currentPage > onBoardingList.length - 1) {
+       myServices.sharedPreferences.setString("onboarding", "1") ; 
        Get.offAllNamed(AppRoute.login) ; 
     } else {
       pageController.animateToPage(currentPage,
@@ -28,14 +33,13 @@ class OnboardingControllerImp extends OnboardingController{
 
   @override
   onPageChanged(int index) {
-    currentPage =index;
+    currentPage = index;
     update();
   }
 
   @override
   void onInit() {
-    pageController =PageController();
+    pageController = PageController();
     super.onInit();
   }
-
 }

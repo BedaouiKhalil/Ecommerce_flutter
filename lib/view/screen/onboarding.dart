@@ -11,14 +11,14 @@ class OnBoarding extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(OnboardingControllerImp());
+    Get.put(OnBoardingControllerImp());
     return Scaffold(
       body: SafeArea(
         child: Column(
           children: [
             Expanded(
               flex: 3,
-              child: const CustomSilderOnBoarding(),
+              child: const CustomSliderOnBoarding(),
             ),
             Expanded(
               flex: 1,

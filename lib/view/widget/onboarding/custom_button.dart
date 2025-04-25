@@ -3,7 +3,7 @@ import 'package:ecommerce/core/constant/color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
-class CustomButtonOnBoarding extends GetView<OnboardingControllerImp> {
+class CustomButtonOnBoarding extends GetView<OnBoardingControllerImp> {
   const CustomButtonOnBoarding({super.key});
 
   @override
