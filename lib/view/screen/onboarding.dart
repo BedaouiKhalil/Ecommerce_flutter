@@ -4,7 +4,6 @@ import 'package:ecommerce/view/widget/onboarding/custom_button.dart';
 import 'package:ecommerce/view/widget/onboarding/custom_silder.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class OnBoarding extends StatelessWidget {
   const OnBoarding({super.key});

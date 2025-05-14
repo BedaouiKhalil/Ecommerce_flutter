@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import 'package:get/get_utils/get_utils.dart';
 
 class Language extends GetView<LocaleController> {
-  const Language({Key? key}) : super(key: key);
+  const Language({super.key});
 
   @override
   Widget build(BuildContext context) {
