@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SignUp extends StatelessWidget {
-  const SignUp({Key? key}) : super(key: key);
+  const SignUp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class SignUp extends StatelessWidget {
           onWillPop: alertExitApp,
           child: GetBuilder<SignUpControllerImp>(
             builder: (controller) =>
-                 HandlingDataRequest(statusRequest: controller.statusRequest!,widget:  Container(
+                 HandlingDataRequest(statusRequest: controller.statusRequest,widget:  Container(
                         padding: const EdgeInsets.symmetric(
                             vertical: 15, horizontal: 30),
                         child: Form(

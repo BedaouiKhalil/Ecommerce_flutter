@@ -14,7 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class Login extends StatelessWidget {
-  const Login({Key? key}) : super(key: key);
+  const Login({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,7 @@ class Login extends StatelessWidget {
           onWillPop: alertExitApp,
           child: GetBuilder<LoginControllerImp>(
             builder: (controller) => HandlingDataRequest(
-                statusRequest: controller.statusRequest!,
+                statusRequest: controller.statusRequest,
                 widget: Container(
                   padding:
                       const EdgeInsets.symmetric(vertical: 15, horizontal: 30),

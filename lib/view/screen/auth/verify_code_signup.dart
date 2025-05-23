@@ -8,7 +8,7 @@ import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:get/get.dart';
 
 class VerfiyCodeSignUp extends StatelessWidget {
-  const VerfiyCodeSignUp({Key? key}) : super(key: key);
+  const VerfiyCodeSignUp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class VerfiyCodeSignUp extends StatelessWidget {
       ),
       body: GetBuilder<VerifyCodeSignUpControllerImp>(
           builder: (controller) => HandlingDataRequest(
-              statusRequest: controller.statusRequest!,
+              statusRequest: controller.statusRequest,
               widget: Container(
                 padding:
                     const EdgeInsets.symmetric(vertical: 15, horizontal: 30),

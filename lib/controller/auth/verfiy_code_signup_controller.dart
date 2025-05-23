@@ -14,7 +14,7 @@ class VerifyCodeSignUpControllerImp extends VerifyCodeSignUpController {
 
   String? email;
 
-  StatusRequest? statusRequest;
+  StatusRequest statusRequest = StatusRequest.none ;
 
   @override
   checkCode() {}
@@ -45,7 +45,7 @@ class VerifyCodeSignUpControllerImp extends VerifyCodeSignUpController {
   @override
   void onInit() {
     email = Get.arguments['email'];
-    print("email ${email}");
+    print("email $email");
     super.onInit();
   }
 }

@@ -2,32 +2,67 @@
 cmake_minimum_required(VERSION 3.14)
 project(ecommerce LANGUAGES CXX)
 
-# The name of the executable created for the application. Change this to change
-# the on-disk name of your application.
 set(BINARY_NAME "ecommerce")
-
-# Explicitly opt in to modern CMake behaviors to avoid warnings with recent
-# versions of CMake.
 cmake_policy(VERSION 3.14...3.25)
 
-# Define build configuration option.
+# Configuration des modes de build
 get_property(IS_MULTICONFIG GLOBAL PROPERTY GENERATOR_IS_MULTI_CONFIG)
 if(IS_MULTICONFIG)
-  set(CMAKE_CONFIGURATION_TYPES "Debug;Profile;Release"
-    CACHE STRING "" FORCE)
+  set(CMAKE_CONFIGURATION_TYPES "Debug;Profile;Release" CACHE STRING "" FORCE)
 else()
   if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
-    set(CMAKE_BUILD_TYPE "Debug" CACHE
-      STRING "Flutter build mode" FORCE)
-    set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS
-      "Debug" "Profile" "Release")
+    set(CMAKE_BUILD_TYPE "Debug" CACHE STRING "Flutter build mode" FORCE)
+    set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Profile" "Release")
   endif()
 endif()
-# Define settings for the Profile build mode.
+
 set(CMAKE_EXE_LINKER_FLAGS_PROFILE "${CMAKE_EXE_LINKER_FLAGS_RELEASE}")
 set(CMAKE_SHARED_LINKER_FLAGS_PROFILE "${CMAKE_SHARED_LINKER_FLAGS_RELEASE}")
 set(CMAKE_C_FLAGS_PROFILE "${CMAKE_C_FLAGS_RELEASE}")
 set(CMAKE_CXX_FLAGS_PROFILE "${CMAKE_CXX_FLAGS_RELEASE}")
+
+if(MSVC)
+    # Debug config
+    if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+        set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /Zi /DEBUG:FULL")
+        set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} /DEBUG /IGNORE:4099")
+        set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /DEBUG /IGNORE:4099")
+    endif()
+
+    # Options communes
+    add_compile_options(
+        /Zc:inline-
+        /Zc:twoPhase-
+        /Zc:__cplusplus
+        /std:c++17
+        /EHsc
+        /W4
+        /WX
+        /wd"4100"
+    )
+endif()
+
+add_definitions(-DUNICODE -D_UNICODE)
+
+function(APPLY_STANDARD_SETTINGS TARGET)
+  target_compile_features(${TARGET} PUBLIC cxx_std_17)
+  target_compile_definitions(${TARGET} PRIVATE 
+    "_HAS_EXCEPTIONS=0"
+    "$<$<CONFIG:Debug>:_DEBUG>"
+  )
+endfunction()
+
+set(FLUTTER_MANAGED_DIR "${CMAKE_CURRENT_SOURCE_DIR}/flutter")
+add_subdirectory(${FLUTTER_MANAGED_DIR})
+add_subdirectory("runner")
+include(flutter/generated_plugins.cmake)
+
+# Installation config
+set(BUILD_BUNDLE_DIR "$<TARGET_FILE_DIR:${BINARY_NAME}>")
+set(CMAKE_VS_INCLUDE_INSTALL_TO_DEFAULT_BUILD 1)
+if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
+  set(CMAKE_INSTALL_PREFIX "${BUILD_BUNDLE_DIR}" CACHE PATH "..." FORCE)
+endif()
 
 # Use Unicode for all projects.
 add_definitions(-DUNICODE -D_UNICODE)
