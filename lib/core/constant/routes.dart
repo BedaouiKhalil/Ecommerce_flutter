@@ -11,4 +11,6 @@ class AppRoute {
   static const String verfiyCodeSignUp = "/verfiycodesignup";
   // Home 
   static const String homepage = "/homepage";
+  static const String items = "/items"; 
+  static const String productdetails = "/productdetails"; 
 }

@@ -1,81 +1,83 @@
 class ItemsModel {
-  String? itemId;
-  String? itemName;
-  String? itemNameAr;
-  String? itemDesc;
-  String? itemDescAr;
-  String? itemImage;
-  String? itemCount;
-  String? itemActive;
-  String? itemPrice;
-  String? itemDiscount;
-  String? itemDate;
-  String? itemCat;
-  String? categoryId;
-  String? categoryName;
-  String? categoryNameAr;
-  String? categoryImage;
-  String? categoryDatetime;
+  String itemId;
+  String itemName;
+  String itemNameAr;
+  String itemDesc;
+  String itemDescAr;
+  String itemImage;
+  String itemCount;
+  String itemActive;
+  String itemPrice;
+  String itemDiscount;
+  String itemDate;
+  String itemCat;
+  String categoryId;
+  String categoryName;
+  String categoryNameAr;
+  String categoryImage;
+  String categoryDatetime;
 
   ItemsModel({
-    this.itemId,
-    this.itemName,
-    this.itemNameAr,
-    this.itemDesc,
-    this.itemDescAr,
-    this.itemImage,
-    this.itemCount,
-    this.itemActive,
-    this.itemPrice,
-    this.itemDiscount,
-    this.itemDate,
-    this.itemCat,
-    this.categoryId,
-    this.categoryName,
-    this.categoryNameAr,
-    this.categoryImage,
-    this.categoryDatetime,
+    required this.itemId,
+    required this.itemName,
+    required this.itemNameAr,
+    required this.itemDesc,
+    required this.itemDescAr,
+    required this.itemImage,
+    required this.itemCount,
+    required this.itemActive,
+    required this.itemPrice,
+    required this.itemDiscount,
+    required this.itemDate,
+    required this.itemCat,
+    required this.categoryId,
+    required this.categoryName,
+    required this.categoryNameAr,
+    required this.categoryImage,
+    required this.categoryDatetime,
   });
 
-  ItemsModel.fromJson(Map<String, dynamic> json) {
-    itemId = json['item_id'];
-    itemName = json['item_name'];
-    itemNameAr = json['item_name_ar'];
-    itemDesc = json['item_desc'];
-    itemDescAr = json['item_desc_ar'];
-    itemImage = json['item_image'];
-    itemCount = json['item_count'];
-    itemActive = json['item_active'];
-    itemPrice = json['item_price'];
-    itemDiscount = json['item_discount'];
-    itemDate = json['item_date'];
-    itemCat = json['item_cat'];
-    categoryId = json['category_id'];
-    categoryName = json['category_name'];
-    categoryNameAr = json['category_nama_ar'];
-    categoryImage = json['category_image'];
-    categoryDatetime = json['category_datetime'];
+  factory ItemsModel.fromJson(Map<String, dynamic> json) {
+    return ItemsModel(
+      itemId: json['item_id']?.toString() ?? '',
+      itemName: json['item_name']?.toString() ?? '',
+      itemNameAr: json['item_name_ar']?.toString() ?? '',
+      itemDesc: json['item_description']?.toString() ?? '',
+      itemDescAr: json['item_description_ar']?.toString() ?? '',
+      itemImage: json['item_image']?.toString() ?? '',
+      itemCount: json['item_count']?.toString() ?? '',
+      itemActive: json['item_active']?.toString() ?? '',
+      itemPrice: json['item_price']?.toString() ?? '',
+      itemDiscount: json['item_discount']?.toString() ?? '',
+      itemDate: json['item_date']?.toString() ?? '',
+      itemCat: json['item_cat']?.toString() ?? '',
+      categoryId: json['category_id']?.toString() ?? '',
+      categoryName: json['category_name']?.toString() ?? '',
+      categoryNameAr: json['category_nama_ar']?.toString() ?? '',
+      categoryImage: json['category_image']?.toString() ?? '',
+      categoryDatetime: json['category_datetime']?.toString() ?? '',
+    );
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['item_id'] = itemId;
-    data['item_name'] = itemName;
-    data['item_name_ar'] = itemNameAr;
-    data['item_desc'] = itemDesc;
-    data['item_desc_ar'] = itemDescAr;
-    data['item_image'] = itemImage;
-    data['item_count'] = itemCount;
-    data['item_active'] = itemActive;
-    data['item_price'] = itemPrice;
-    data['item_discount'] = itemDiscount;
-    data['item_date'] = itemDate;
-    data['item_cat'] = itemCat;
-    data['category_id'] = categoryId;
-    data['category_name'] = categoryName;
-    data['category_nama_ar'] = categoryNameAr;
-    data['category_image'] = categoryImage;
-    data['category_datetime'] = categoryDatetime;
-    return data;
+    return {
+      'item_id': itemId,
+      'item_name': itemName,
+      'item_name_ar': itemNameAr,
+      'item_desc': itemDesc,
+      'item_desc_ar': itemDescAr,
+      'item_image': itemImage,
+      'item_count': itemCount,
+      'item_active': itemActive,
+      'item_price': itemPrice,
+      'item_discount': itemDiscount,
+      'item_date': itemDate,
+      'item_cat': itemCat,
+      'category_id': categoryId,
+      'category_name': categoryName,
+      'category_nama_ar': categoryNameAr,
+      'category_image': categoryImage,
+      'category_datetime': categoryDatetime,
+    };
   }
 }

@@ -3,11 +3,12 @@ class AppLink {
 
   static const String test = "$server/test.php";
 
-static const String imageststatic = "http://10.0.2.2/course/flutter/wael/ecommerce/upload";
-//========================== Image ============================ 
-static const String imagestCategories = "$imageststatic/categories"; 
-static const String imagestItems = "$imageststatic/items"; 
-// =============================================================
+  static const String imageststatic =
+      "http://10.0.2.2/course/flutter/wael/ecommerce/upload";
+  //========================== Image ============================
+  static const String imagestCategories = "$imageststatic/categories";
+  static const String imagestItems = "$imageststatic/items";
+  // =============================================================
 
   // ================================= Auth ========================== //
   static const String signUp = "$server/auth/signup.php";
@@ -23,6 +24,7 @@ static const String imagestItems = "$imageststatic/items";
       "$server/forgetPassword/verifyCode.php";
 
   // Home
-
   static const String homepage = "$server/home.php";
+  // items
+  static const String items = "$server/items/items.php";
 }

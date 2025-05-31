@@ -1,3 +1,4 @@
+
 import 'package:ecommerce/core/constant/color.dart';
 import 'package:flutter/material.dart';
 
@@ -20,10 +21,10 @@ class CustomButtonAppBar extends StatelessWidget {
       onPressed: onPressed,
       child: Column(mainAxisSize: MainAxisSize.min, children: [
         Icon(icondata,
-            color: active == true ? AppColor.primaryColor : Colors.black),
+            color: active == true ? AppColor.primaryColor : AppColor.grey2),
         Text(textbutton,
             style: TextStyle(
-                color: active == true ? AppColor.primaryColor : Colors.black))
+                color: active == true ? AppColor.primaryColor : AppColor.grey2))
       ]),
     );
   }

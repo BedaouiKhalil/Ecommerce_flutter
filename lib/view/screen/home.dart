@@ -31,8 +31,8 @@ class HomePage extends StatelessWidget {
                     const ListCategoriesHome(),
                     const CustomTitleHome(title: "Product for you"),
                     const ListItemsHome(),
-                    const CustomTitleHome(title: "Offer"),
-                    const ListItemsHome()
+                    // const CustomTitleHome(title: "Offer"),
+                    // const ListItemsHome()
                   ],
                 ))));
   }
