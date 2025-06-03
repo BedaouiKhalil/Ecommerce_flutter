@@ -1,5 +1,7 @@
+
 import 'package:ecommerce/core/class/status_request.dart';
 import 'package:ecommerce/core/function/handing_data_controller.dart';
+import 'package:ecommerce/core/services/services.dart';
 import 'package:ecommerce/data/dataSource/remote/items_data.dart';
 import 'package:ecommerce/data/model/items.dart';
 import 'package:get/get.dart';
@@ -21,6 +23,8 @@ class ItemsControllerImp extends ItemsController {
   List data = [];
 
   late StatusRequest statusRequest;
+
+  MyServices myServices = Get.find();
 
   @override
   void onInit() {
@@ -48,13 +52,15 @@ class ItemsControllerImp extends ItemsController {
   getItems(categoryid) async {
     data.clear();
     statusRequest = StatusRequest.loading;
-    var response = await testData.getData(categoryid);
+    var response = await testData.getData(
+        categoryid, myServices.sharedPreferences.getString("id")!);
     print("=============================== Controller $response ");
     statusRequest = handlingData(response);
     if (StatusRequest.success == statusRequest) {
       // Start backend
       if (response['status'] == "success") {
         data.addAll(response['data']);
+        print('backend: ${response['data']}');
       } else {
         statusRequest = StatusRequest.failure;
       }
