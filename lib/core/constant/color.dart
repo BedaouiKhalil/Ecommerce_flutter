@@ -4,9 +4,11 @@ class AppColor {
   static const Color grey = Color(0xff8e8e8e);
   static const Color grey2 = Color.fromARGB(255, 66, 66, 66);
   static const Color black = Color(0xff000000);
-  static const Color primaryColor = Color(0xFF2B8AB8);
-  static const Color secondColor = Color(0xFF4DD0E1);
-  static const Color thirdColor = Color(0xFF174B63);
-  static const Color fourthColor = Color(0xFF607D8B);
-  static const Color backgroundcolor = Color.fromARGB(255, 255, 255, 255);
+  // static const Color primaryColor = Color(0xff5DB1DF);
+  static const Color backgroundcolor = Color(0xffF8F9FD) ; 
+  static const Color primaryColor = Color(0xffe74c3c);
+  static const Color secondColor = Color(0xffc0392b);
+  static const Color fourthColor = Color(0xff0d3056);
+  static const Color thirdColor = Color.fromARGB(255, 255, 179, 170);
+
 }

@@ -5,7 +5,8 @@ import 'package:ecommerce/core/services/services.dart';
 import 'package:ecommerce/data/dataSource/remote/auth/login.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart'; 
+import 'package:get/get.dart';
+
 abstract class LoginController extends GetxController {
   login();
   goToSignUp();
@@ -13,7 +14,7 @@ abstract class LoginController extends GetxController {
 }
 
 class LoginControllerImp extends LoginController {
-  LoginData loginData = LoginData(Get.find()); 
+  LoginData loginData = LoginData(Get.find());
 
   GlobalKey<FormState> formstate = GlobalKey<FormState>();
 
@@ -21,8 +22,8 @@ class LoginControllerImp extends LoginController {
   late TextEditingController password;
 
   bool isshowpassword = true;
- 
-   MyServices myServices = Get.find();
+
+  MyServices myServices = Get.find();
 
   StatusRequest statusRequest = StatusRequest.none;
 
@@ -42,15 +43,37 @@ class LoginControllerImp extends LoginController {
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {
           // data.addAll(response['data']);
-          myServices.sharedPreferences.setString("id", response['data']['id']) ;
-          myServices.sharedPreferences.setString("username", response['data']['username']) ;
-          myServices.sharedPreferences.setString("email", response['data']['email']) ;
-          myServices.sharedPreferences.setString("phone", response['data']['phone']) ;
-          myServices.sharedPreferences.setString("step","2") ;
-          Get.offNamed(AppRoute.homepage);
+          if (response['data']['approve'] == 1) {
+            myServices.sharedPreferences.setString(
+              "id",
+              response['data']['id'].toString(),
+            );
+            myServices.sharedPreferences.setString(
+              "username",
+              response['data']['username'],
+            );
+            myServices.sharedPreferences.setString(
+              "email",
+              response['data']['email'],
+            );
+            myServices.sharedPreferences.setString(
+              "phone",
+              response['data']['phone'],
+            );
+
+            myServices.sharedPreferences.setString("step", "2");
+            Get.offNamed(AppRoute.homepage);
+          } else {
+            Get.toNamed(
+              AppRoute.verfiyCodeSignUp,
+              arguments: {"email": email.text},
+            );
+          }
         } else {
           Get.defaultDialog(
-              title: "ُWarning", middleText: "Email Or Password Not Correct");
+            title: "ُWarning",
+            middleText: "Email Or Password Not Correct",
+          );
           statusRequest = StatusRequest.failure;
         }
       }

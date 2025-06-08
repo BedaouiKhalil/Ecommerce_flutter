@@ -8,7 +8,7 @@ class LogoAuth extends StatelessWidget {
   Widget build(BuildContext context) {
     return CircleAvatar(
       radius: 70,
-      backgroundColor: Colors.blue,
+      backgroundColor: Colors.red,
       child: ClipOval(
         child: Image.asset(
           AppImageAsset.logo,
