@@ -11,6 +11,7 @@ import 'package:ecommerce/view/screen/auth/login.dart';
 import 'package:ecommerce/view/screen/auth/signup.dart';
 import 'package:ecommerce/view/screen/auth/success_signup.dart';
 import 'package:ecommerce/view/screen/auth/verify_code_signup.dart';
+import 'package:ecommerce/view/screen/cart.dart';
 import 'package:ecommerce/view/screen/home_screen.dart';
 import 'package:ecommerce/view/screen/items.dart';
 import 'package:ecommerce/view/screen/language.dart';
@@ -40,4 +41,6 @@ List<GetPage<dynamic>>? routes = [
   GetPage(name: AppRoute.items, page: () => const Items()), 
   GetPage(name: AppRoute.productdetails, page: () => const ProductDetails()), 
   GetPage(name: AppRoute.myfavroite, page: () => const MyFavorite()),
+
+   GetPage(name: AppRoute.cart, page: () => const Cart()),
 ];

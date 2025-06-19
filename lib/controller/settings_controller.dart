@@ -6,9 +6,9 @@ class SettingsController extends GetxController {
   MyServices myServices = Get.find();
 
   Future<void> logout() async {
-    final String? currentLang = myServices.sharedPreferences.getString("lang");
+    // final String? currentLang = myServices.sharedPreferences.getString("lang");
     await myServices.sharedPreferences.clear();
-    await myServices.sharedPreferences.setString("lang", currentLang ?? "en");
+    // await myServices.sharedPreferences.setString("lang", currentLang ?? "en");
     Get.offAllNamed(AppRoute.login);
   }
 }

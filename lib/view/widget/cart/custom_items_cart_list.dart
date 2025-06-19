@@ -1,12 +1,24 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce/core/constant/color.dart';
-import 'package:ecommerce/core/constant/image_asset.dart';
+import 'package:ecommerce/link_api.dart';
 import 'package:flutter/material.dart';
 
 class CustomItemsCartList extends StatelessWidget {
-  final String name ; 
-  final String price  ; 
-  final String count   ; 
-  const CustomItemsCartList({Key? key, required this.name, required this.price, required this.count , }) : super(key: key);
+  final String name;
+  final String price;
+  final String count;
+  final String imagename;
+  final void Function()? onAdd;
+  final void Function()? onRemove;
+  const CustomItemsCartList({
+    Key? key,
+    required this.name,
+    required this.price,
+    required this.count,
+    required this.imagename,
+    required this.onAdd,
+    required this.onRemove,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,10 +27,9 @@ class CustomItemsCartList extends StatelessWidget {
         child: Row(children: [
           Expanded(
               flex: 2,
-              child: Image.asset(
-                AppImageAsset.logo,
-                height: 90,
-                fit: BoxFit.cover,
+              child: CachedNetworkImage(
+                imageUrl: "${AppLink.imagestItems}/$imagename",
+                height: 80,
               )),
           Expanded(
               flex: 3,
@@ -33,7 +44,7 @@ class CustomItemsCartList extends StatelessWidget {
             children: [
               Container(
                   height: 35,
-                  child: IconButton(onPressed: () {}, icon: Icon(Icons.add))),
+                  child: IconButton(onPressed: onAdd, icon: Icon(Icons.add))),
               Container(
                   height: 30,
                   child: Text(
@@ -42,7 +53,7 @@ class CustomItemsCartList extends StatelessWidget {
                   )),
               Container(
                   height: 25,
-                  child: IconButton(onPressed: () {}, icon: Icon(Icons.remove)))
+                  child: IconButton(onPressed: onRemove, icon: Icon(Icons.remove)))
             ],
           ))
         ]),

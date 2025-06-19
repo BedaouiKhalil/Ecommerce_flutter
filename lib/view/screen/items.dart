@@ -62,25 +62,3 @@ class Items extends StatelessWidget {
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// favoriteController.isFavorite[controller.data[index]
-                            // ['items_id']] = controller.data[index]['favorite'];

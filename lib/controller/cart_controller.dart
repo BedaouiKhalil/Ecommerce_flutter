@@ -2,56 +2,24 @@ import 'package:ecommerce/core/class/status_request.dart';
 import 'package:ecommerce/core/function/handing_data_controller.dart';
 import 'package:ecommerce/core/services/services.dart';
 import 'package:ecommerce/data/dataSource/remote/cart_data.dart';
-import 'package:ecommerce/data/model/items.dart';
+import 'package:ecommerce/data/model/cart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-abstract class ProductDetailsController extends GetxController {}
-
-class ProductDetailsControllerImp extends ProductDetailsController {
-  // CartController cartController = Get.put(CartController());
-
-  late ItemsModel itemsModel;
-
+class CartController extends GetxController {
   CartData cartData = CartData(Get.find());
 
   late StatusRequest statusRequest;
 
   MyServices myServices = Get.find();
 
-  int countitems = 0;
+  List<CartModel> data = [];
 
-  intialData() async {
-    statusRequest = StatusRequest.loading;
-    itemsModel = Get.arguments['itemsmodel'];
-    countitems = await getCountItems(itemsModel.itemId!);
-    statusRequest = StatusRequest.success;
-    update();
-  }
+  double priceorders = 0.0;
 
-  getCountItems(String itemsid) async {
-    statusRequest = StatusRequest.loading;
-    var response = await cartData.getCountCart(
-        myServices.sharedPreferences.getString("id")!, itemsid);
-    print("=============================== Controller $response ");
-    statusRequest = handlingData(response);
-    if (StatusRequest.success == statusRequest) {
-      // Start backend
-      if (response['status'] == "success") {
-        int countitems = 0;
-        countitems = response['data'];
-        print("==================================");
-        print("$countitems");
-        return countitems;
-        // data.addAll(response['data']);
-      } else {
-        statusRequest = StatusRequest.failure;
-      }
-      // End
-    }
-  }
+  int totalcountitems = 0;
 
-  addItems(String itemsid) async {
+  add(String itemsid) async {
     statusRequest = StatusRequest.loading;
     update();
     var response = await cartData.addCart(
@@ -73,7 +41,7 @@ class ProductDetailsControllerImp extends ProductDetailsController {
     update();
   }
 
-  deleteitems(String itemsid) async {
+  delete(String itemsid) async {
     statusRequest = StatusRequest.loading;
     update();
 
@@ -96,29 +64,49 @@ class ProductDetailsControllerImp extends ProductDetailsController {
     update();
   }
 
-  List subitems = [
-    {"name": "red", "id": 1, "active": '0'},
-    {"name": "yallow", "id": 2, "active": '0'},
-    {"name": "black", "id": 3, "active": '1'}
-  ];
+ 
 
-  add() {
-    addItems(itemsModel.itemId!);
-    countitems++;
-    update();
+  resetVarCart() {
+    totalcountitems = 0;
+    priceorders = 0.0;
+    data.clear();
   }
 
-  remove() {
-    if (countitems > 0) {
-      deleteitems(itemsModel.itemId!);
-      countitems--;
-      update();
+  refreshPage() {
+    resetVarCart();
+    view();
+  }
+
+  view() async {
+    statusRequest = StatusRequest.loading;
+    update();
+    var response =
+        await cartData.viewCart(myServices.sharedPreferences.getString("id")!);
+    print("=============================== Controller $response ");
+    statusRequest = handlingData(response);
+    if (StatusRequest.success == statusRequest) {
+      // Start backend
+      if (response['status'] == "success") {
+        if (response['dataCart']['status'] == 'success') {
+          List dataresponse = response['dataCart']['data'];
+          Map dataresponsecountprice = response['countPrice'];
+          data.clear();
+          data.addAll(dataresponse.map((e) => CartModel.fromJson(e)));
+          totalcountitems = dataresponsecountprice['totalCount'];
+          priceorders = double.parse(dataresponsecountprice['totalPrice'].toString());
+          print(priceorders);
+        }
+      } else {
+        statusRequest = StatusRequest.failure;
+      }
+      // End
     }
+    update();
   }
 
   @override
   void onInit() {
-    intialData();
+    view();
     super.onInit();
   }
 }
