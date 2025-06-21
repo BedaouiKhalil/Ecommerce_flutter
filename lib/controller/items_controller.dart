@@ -1,9 +1,10 @@
-
+import 'package:ecommerce/controller/home_controller.dart';
 import 'package:ecommerce/core/class/status_request.dart';
 import 'package:ecommerce/core/function/handing_data_controller.dart';
 import 'package:ecommerce/core/services/services.dart';
 import 'package:ecommerce/data/dataSource/remote/items_data.dart';
 import 'package:ecommerce/data/model/items.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 abstract class ItemsController extends GetxController {
@@ -13,7 +14,7 @@ abstract class ItemsController extends GetxController {
   goToPageProductDetails(ItemsModel itemsModel);
 }
 
-class ItemsControllerImp extends ItemsController {
+class ItemsControllerImp extends SearchMixController {
   List categories = [];
   String? catid;
   int? selectedCat;
@@ -28,6 +29,7 @@ class ItemsControllerImp extends ItemsController {
 
   @override
   void onInit() {
+     search = TextEditingController();
     intialData();
     super.onInit();
   }
@@ -60,7 +62,6 @@ class ItemsControllerImp extends ItemsController {
       // Start backend
       if (response['status'] == "success") {
         data.addAll(response['data']);
-        print('backend: ${response['data']}');
       } else {
         statusRequest = StatusRequest.failure;
       }
@@ -74,3 +75,4 @@ class ItemsControllerImp extends ItemsController {
     Get.toNamed("productdetails", arguments: {"itemsmodel": itemsModel});
   }
 }
+

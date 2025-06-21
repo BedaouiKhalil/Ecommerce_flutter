@@ -17,6 +17,7 @@ class ItemsModel {
   String categoryImage;
   String categoryDatetime;
   String? favorite;
+  String itemPriceDiscount;
 
   ItemsModel({
     required this.itemId,
@@ -37,6 +38,7 @@ class ItemsModel {
     required this.categoryImage,
     required this.categoryDatetime,
     required this.favorite,
+    required this.itemPriceDiscount,
   });
 
   factory ItemsModel.fromJson(Map<String, dynamic> json) {
@@ -59,6 +61,7 @@ class ItemsModel {
       categoryImage: json['category_image']?.toString() ?? '',
       categoryDatetime: json['category_datetime']?.toString() ?? '',
       favorite: json['favorite']?.toString() ?? '',
+      itemPriceDiscount: json['item_price_discount']?.toString() ?? '',
     );
   }
 
@@ -82,6 +85,7 @@ class ItemsModel {
       'category_image': categoryImage,
       'category_datetime': categoryDatetime,
       'favorite': favorite,
+      'item_price_discount': itemPriceDiscount,
     };
   }
 }
