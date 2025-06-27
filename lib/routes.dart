@@ -3,6 +3,8 @@
 import 'package:ecommerce/core/constant/routes.dart';
 import 'package:ecommerce/core/middleware/my_middleware.dart';
 import 'package:ecommerce/view/screen/OnBoarding.dart';
+import 'package:ecommerce/view/screen/address/add.dart';
+import 'package:ecommerce/view/screen/address/view.dart';
 import 'package:ecommerce/view/screen/auth/forget_password/forget_password.dart';
 import 'package:ecommerce/view/screen/auth/forget_password/reset_password.dart';
 import 'package:ecommerce/view/screen/auth/forget_password/success_reset_password.dart';
@@ -43,4 +45,7 @@ List<GetPage<dynamic>>? routes = [
   GetPage(name: AppRoute.myfavroite, page: () => const MyFavorite()),
 
    GetPage(name: AppRoute.cart, page: () => const Cart()),
+
+   GetPage(name: AppRoute.addressview, page: () => const AddressView()),
+  GetPage(name: AppRoute.addressadd, page: () => const AddressAdd()),
 ];
