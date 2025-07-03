@@ -39,7 +39,7 @@ class ProductDetailsControllerImp extends ProductDetailsController {
       // Start backend
       if (response['status'] == "success") {
         int countitems = 0;
-        countitems = response['data'];
+        countitems = int.tryParse(response['data'].toString()) ?? 0;
         print("==================================");
         print("$countitems");
         return countitems;

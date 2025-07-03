@@ -4,6 +4,21 @@ import 'package:flutter/material.dart';
 ThemeData themeEnglish = ThemeData(
   fontFamily: "PlayfairDisplay",
   scaffoldBackgroundColor: Colors.white,
+  floatingActionButtonTheme: FloatingActionButtonThemeData(
+    backgroundColor: AppColor.primaryColor,
+  ),
+  appBarTheme: AppBarTheme(
+    centerTitle: true,
+    elevation: 0,
+    iconTheme: IconThemeData(color: AppColor.primaryColor),
+    titleTextStyle: const TextStyle(
+      color: AppColor.primaryColor,
+      fontWeight: FontWeight.bold,
+      fontFamily: "PlayfairDisplay",
+      fontSize: 25,
+    ),
+    backgroundColor: Colors.grey[50],
+  ),
   textTheme: const TextTheme(
     displayLarge: TextStyle(
       fontWeight: FontWeight.bold,
@@ -29,6 +44,21 @@ ThemeData themeEnglish = ThemeData(
 ThemeData themeArabic = ThemeData(
   fontFamily: "Cairo",
   scaffoldBackgroundColor: Colors.white,
+  floatingActionButtonTheme: FloatingActionButtonThemeData(
+    backgroundColor: AppColor.primaryColor,
+  ),
+  appBarTheme: AppBarTheme(
+    centerTitle: true,
+    elevation: 0,
+    iconTheme: IconThemeData(color: AppColor.primaryColor),
+    titleTextStyle: const TextStyle(
+      color: AppColor.primaryColor,
+      fontWeight: FontWeight.bold,
+      fontFamily: "PlayfairDisplay",
+      fontSize: 25,
+    ),
+    backgroundColor: Colors.grey[50],
+  ),
   textTheme: const TextTheme(
     displayLarge: TextStyle(
       fontWeight: FontWeight.bold,

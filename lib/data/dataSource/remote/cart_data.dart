@@ -30,4 +30,10 @@ class CartData {
     });
     return response.fold((l) => l, (r) => r);
   }
+
+  checkCoupon(String couponName) async {
+    var response =
+        await crud.postData(AppLink.checkcoupon, {"couponName": couponName});
+    return response.fold((l) => l, (r) => r);
+  }
 }
